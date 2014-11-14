@@ -67,6 +67,9 @@ module Eat
         http.receive_timeout = timeout
         if uri.scheme == 'https'
           http.ssl_config.verify_mode = openssl_verify_mode
+          if options[:ssl_version]
+            http.ssl_config.ssl_version = options[:ssl_version]
+          end
         end
         begin
           if limit == INFINITY
